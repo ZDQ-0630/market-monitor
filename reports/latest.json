@@ -1,24 +1,8 @@
 {
-  "run_at_utc": "2026-11-18T13:17:29Z",
+  "run_at_utc": "2026-11-18T13:24:39Z",
   "run_date_sgt": "2026-11-18",
-  "level": "red",
-  "alerts": [
-    {
-      "level": "red",
-      "code": "LADDER_QQQM_0",
-      "msg": "QQQM 距高点回撤 -13.5%，越过抄底阶梯第 1 档（-10%）→ 按规则额外投入 ≈ SGD 150（限价单分批执行）"
-    },
-    {
-      "level": "red",
-      "code": "LADDER_SMH_2",
-      "msg": "SMH 距高点回撤 -31.2%，越过抄底阶梯第 1–3 档（-30%）→ 按规则额外投入 ≈ SGD 900（限价单分批执行）"
-    },
-    {
-      "level": "yellow",
-      "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.02）"
-    }
-  ],
+  "level": "white",
+  "alerts": [],
   "etf": {
     "VOO": {
       "as_of": "2026-11-17",
@@ -26,12 +10,25 @@
       "high": 716.2000122070312,
       "drawdown": -0.060053070416860255,
       "ret_1d": -0.010393095614505743,
-      "ma200": 670.7077648925781,
+      "ma200": 670.7077667236329,
       "below_ma200": false,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": 0.009580850688695186
+      "close_vs_ma_month": 0.009580841447575317
+    },
+    "VUG": {
+      "as_of": "2026-11-17",
+      "close": 81.44000244140625,
+      "high": 92.63999938964844,
+      "drawdown": -0.12089806802712122,
+      "ret_1d": -0.00828056846605607,
+      "ma200": 84.0673203277588,
+      "below_ma200": true,
+      "crossed_below_ma200": false,
+      "last_month_end": "2026-10",
+      "trend_below_ma_month_end": false,
+      "close_vs_ma_month": -0.025961917109896593
     },
     "QQQM": {
       "as_of": "2026-11-17",
@@ -65,7 +62,7 @@
       "high": 218.1940155029297,
       "drawdown": -0.3516778799464012,
       "ret_1d": 0.0016995148781295821,
-      "ma200": 160.51587448120117,
+      "ma200": 160.51587436676024,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -91,12 +88,12 @@
       "high": 759.6599731445312,
       "drawdown": -0.13520517674814836,
       "ret_1d": -0.007253476075509968,
-      "ma200": 681.575308227539,
+      "ma200": 681.5753076171875,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.030068660991579566
+      "close_vs_ma_month": -0.03006866973194744
     },
     "SPY": {
       "as_of": "2026-11-17",
@@ -109,24 +106,27 @@
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": 0.009475747970629556
+      "close_vs_ma_month": 0.009475756462430152
     }
   },
   "macro": {
     "as_of": {
       "VIXCLS": "2026-11-17",
-      "VXVCLS": "2026-11-17"
+      "VXVCLS": "2026-11-17",
+      "T10Y3M": "2026-11-17",
+      "DFII10": "2026-11-17",
+      "DGS10": "2026-11-17"
     },
     "vix": 25.46,
     "vix3m": 24.98,
     "vix_term_ratio": 1.0192153722978383,
-    "t10y3m": null,
-    "real_10y": null,
-    "ust_10y": null,
+    "t10y3m": 0.7699999999999996,
+    "real_10y": 2.89,
+    "ust_10y": 5.1,
     "nfci": null,
     "sahm": null,
     "usd_broad": null,
-    "real_10y_chg_20d": null
+    "real_10y_chg_20d": 0.0900000000000003
   },
   "state": {
     "ladder": {
@@ -141,15 +141,25 @@
     "last_data_date": "2026-11-17"
   },
   "data_issues": [
-    "FRED VIXCLS 失败，已改用 Cboe 官方数据",
-    "FRED VXVCLS 失败，已改用 Cboe 官方数据",
-    "FRED BAMLH0A0HYM2 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED T10Y3M 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED DFII10 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED DGS10 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED NFCI 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED SAHMREALTIME 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "FRED DTWEXBGS 获取失败：ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=25)",
-    "VUG 价格获取失败：yfinance: database is locked; stooq: ConnectTimeout: HTTPSConnectionPool(host='stooq.com', port=443): Max retries exceeded with url: /q/d/l/?s=vug.us&i=d (Caused by ConnectTimeoutError(<HTTPSConnection(host='stooq.com', port=443) at 0x767b4dd0ec60>, 'Connection to stooq.com timed out. (connect timeout=5)'))"
-  ]
+    "BAMLH0A0HYM2 缺失（可在仓库 Secrets 设置免费的 FRED_API_KEY 解决）：FRED API: 未设置 FRED_API_KEY; FRED 网页: ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=12)",
+    "NFCI 缺失（可在仓库 Secrets 设置免费的 FRED_API_KEY 解决）：FRED API: 未设置 FRED_API_KEY; FRED 网页: ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=12)",
+    "SAHMREALTIME 缺失：FRED API: 未设置 FRED_API_KEY; BLS 计算: could not convert string to float: '-'; FRED 网页: ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=12)",
+    "DTWEXBGS 缺失（可在仓库 Secrets 设置免费的 FRED_API_KEY 解决）：FRED API: 未设置 FRED_API_KEY; FRED 网页: ReadTimeout: HTTPSConnectionPool(host='fred.stlouisfed.org', port=443): Read timed out. (read timeout=12)",
+    "价格数据日期未更新（2026-11-17），可能是美股休市或数据源延迟"
+  ],
+  "sources": {
+    "VIXCLS": "Cboe",
+    "VXVCLS": "Cboe",
+    "T10Y3M": "美国财政部",
+    "DFII10": "美国财政部",
+    "DGS10": "美国财政部",
+    "VOO": "yfinance",
+    "VUG": "yfinance",
+    "QQQM": "yfinance",
+    "SMH": "yfinance",
+    "SOXX": "yfinance",
+    "DRAM": "yfinance",
+    "QQQ": "yfinance",
+    "SPY": "yfinance"
+  }
 }
