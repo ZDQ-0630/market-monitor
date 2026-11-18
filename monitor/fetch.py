@@ -105,9 +105,9 @@ def sahm_from_unrate(u: pd.Series) -> pd.Series:
 
 def parse_bls(text: str) -> pd.Series:
     data = json.loads(text)["Results"]["series"][0]["data"]
-    rows = {pd.Timestamp(int(d["year"]), int(d["period"][1:]), 1): float(d["value"])
+    rows = {pd.Timestamp(int(d["year"]), int(d["period"][1:]), 1): pd.to_numeric(d["value"], errors="coerce")
             for d in data if d["period"].startswith("M") and d["period"] != "M13"}
-    return pd.Series(rows).sort_index()
+    return pd.Series(rows, dtype=float).dropna().sort_index()  # BLS 用 "-" 表示缺失月份
 
 
 # ---------- 各来源 ----------

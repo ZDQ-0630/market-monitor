@@ -84,5 +84,6 @@ def test_full_run_offline(tmp_path):
     json.loads((tmp_path / "reports/latest.json").read_text())
     # 第二次运行：数据日期未变 → 不重复报警，并记录数据问题
     out2 = run.run(tmp_path, fetcher=fake_fetch, now=now + dt.timedelta(days=1))
-    assert out2["alerts"] == [] and any("未更新" in i for i in out2["data_issues"])
+    assert all(a.get("repeat") for a in out2["alerts"]) and any("未更新" in i for i in out2["data_issues"])
+    assert len(out2["alerts"]) == len(out["alerts"])  # 同日重跑不会吞掉报警
     assert len((tmp_path / "data/snapshots.csv").read_text().strip().splitlines()) == 3

@@ -52,11 +52,14 @@ def run(root: Path = ROOT, fetcher=fetch.fetch_all, now: dt.datetime | None = No
     state = json.loads(state_p.read_text()) if state_p.exists() else {}
     last_data_date = max((p["as_of"] for p in px.values()), default=None)
     if state.get("last_data_date") == last_data_date:
-        issues.append(f"价格数据日期未更新（{last_data_date}），可能是美股休市或数据源延迟")
-        alerts, new_state = [], state  # 无新数据时不重复报警
+        issues.append(f"价格数据日期未更新（{last_data_date}），可能是美股休市或数据源延迟；以下报警沿用上次结果")
+        # 无新数据时不重新评估，但保留上次报警（标记 repeat），避免同日重跑把报警覆盖掉
+        alerts = [dict(a, repeat=True) for a in state.get("last_alerts", [])]
+        new_state = state
     else:
         alerts, new_state = rules.evaluate(px, macro, cfg, state)
         new_state["last_data_date"] = last_data_date
+        new_state["last_alerts"] = alerts
     level = rules.overall_level(alerts)
     run_date = (now + dt.timedelta(hours=8)).strftime("%Y-%m-%d")  # 以新加坡日期命名
 

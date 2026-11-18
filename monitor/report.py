@@ -13,7 +13,8 @@ def _f(x, fmt="{:.2f}"):
 def to_markdown(run_date: str, level: str, alerts: list, px: dict, macro: dict, st: dict, issues: list) -> str:
     L = [f"# 市场监控 {run_date}  {EMOJI[level]} {level.upper()}", ""]
     if alerts:
-        L += ["## 报警", *[f"- {EMOJI[a['level']]} {a['msg']}" for a in alerts], ""]
+        L += ["## 报警", *[f"- {EMOJI[a['level']]} {a['msg']}" + ("（沿用上次，数据未更新）" if a.get("repeat") else "")
+                          for a in alerts], ""]
     else:
         L += ["今日无规则触发。", ""]
     L += ["## ETF", "| 标的 | 数据日 | 收盘 | 距高点 | 1日 | 200日线下方 | 月末<10月均线 |",

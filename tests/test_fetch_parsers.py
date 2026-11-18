@@ -38,6 +38,7 @@ def test_bls_and_sahm():
     data = [{"year": "2026", "period": f"M{m:02d}", "value": str(v)}
             for m, v in zip(range(1, 11), [4.0, 4.0, 4.0, 4.1, 4.1, 4.2, 4.4, 4.6, 4.7, 4.8])]
     data += [{"year": "2025", "period": f"M{m:02d}", "value": "4.0"} for m in range(1, 13)]
+    data[5]["value"] = "-"  # BLS 缺失月份（如政府停摆期间）用 "-" 表示
     u = fetch.parse_bls(json.dumps({"Results": {"series": [{"data": data}]}}))
     assert u.index[-1] == pd.Timestamp("2026-10-01")
     sahm = fetch.sahm_from_unrate(u)
