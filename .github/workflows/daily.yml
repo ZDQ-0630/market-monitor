@@ -29,6 +29,8 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
       - run: python -u -m monitor.run
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}   # 可选；未设置时自动使用替代官方源
       - name: Commit results
         run: |
           git config user.name "market-monitor-bot"
