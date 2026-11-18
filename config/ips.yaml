@@ -1,0 +1,45 @@
+# 投资政策说明书（IPS）— 机器可读部分
+# 所有阈值都是"待回测的初始参数"，不是已验证的结论。规则每年最多改一次，改动写进 CHANGELOG。
+
+universe:
+  core: [VOO, VUG, QQQM]          # 核心仓：只受抄底阶梯影响，不因择时卖出
+  satellite: [SMH, SOXX, DRAM]    # 卫星仓：受"两把钥匙"降风险规则影响
+  reference: [QQQ, SPY]           # 历史更长，用于趋势判断
+
+watchlist: []                     # 观察名单，最多 10 只（只用于想法收件箱，不触发交易规则）
+
+monthly_dca_sgd: 300             # 示例：每月固定定投额，请改成你的真实数字
+
+drawdown_ladder:                  # 抄底阶梯（红色报警）
+  tickers: [QQQM, SMH]
+  reset_within_pct_of_high: 0.02  # 回到距高点 2% 以内视为"新高"，阶梯重置
+  levels:
+    - {drawdown: -0.10, extra_multiple: 0.5}   # 额外投入 = 0.5 × 月定投额
+    - {drawdown: -0.20, extra_multiple: 1.0}
+    - {drawdown: -0.30, extra_multiple: 1.5}
+
+two_key:                          # 降风险：两把钥匙同时转动才触发（红色报警）
+  trend_ticker: QQQ
+  ma_months: 10                   # 钥匙1：上一个完整月的月末收盘 < 10 个月均线
+  hy_oas_above_12m_mean_pp: 1.0   # 钥匙2a：高收益债利差高于过去 12 个月均值 1.0 个百分点
+  sahm_threshold: 0.5             # 钥匙2b：Sahm 规则 ≥ 0.5（满足 2a 或 2b 即算第二把钥匙）
+  action: "暂停加仓卫星仓（SMH/SOXX/DRAM），卫星仓减半；核心仓不动，核心定投照常"
+  resume: "趋势钥匙解除（月末重新站上 10 个月均线）→ 卫星仓分 3 个月买回"
+
+watch:                            # 观察区（黄色报警）：只记录，不行动
+  vix_level: 30
+  vix_term_ratio: 1.0             # VIX / VIX3M ≥ 1 表示期限结构倒挂
+  hy_oas_20d_change_pp: 0.75
+  nfci_above: 0.0                 # 芝加哥联储金融条件指数 > 0 表示偏紧
+  daily_move_abs: 0.04            # 单日涨跌幅绝对值 ≥ 4%
+
+fred_series:                      # 免费、无需 API key（fredgraph.csv 接口）
+  VIXCLS: "VIX"
+  VXVCLS: "VIX 3个月"
+  BAMLH0A0HYM2: "美国高收益债利差 OAS (%)"
+  T10Y3M: "10年-3个月国债利差 (%)"
+  DFII10: "10年期实际利率 TIPS (%)"
+  DGS10: "10年期国债收益率 (%)"
+  NFCI: "芝加哥联储金融条件指数（周）"
+  SAHMREALTIME: "Sahm 规则实时值（月）"
+  DTWEXBGS: "美元广义指数"
