@@ -1,0 +1,38 @@
+name: daily-monitor
+
+on:
+  schedule:
+    # 23:37 UTC 周一至周五 = 新加坡时间周二至周六 07:37（美股收盘约 2.5 小时后）
+    - cron: "37 23 * * 1-5"
+  workflow_dispatch: {}   # 允许在 GitHub 网页上手动运行
+  push:                   # 代码或规则更新时立即跑一次（机器人提交的数据不会触发）
+    branches: [main]
+    paths: ["monitor/**", "config/**", ".github/workflows/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-monitor
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python -m monitor.run
+      - name: Commit results
+        run: |
+          git config user.name "market-monitor-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data reports
+          git diff --cached --quiet || git commit -m "data: daily update $(date -u +%F)"
+          git push
