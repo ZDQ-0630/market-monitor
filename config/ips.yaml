@@ -2,16 +2,16 @@
 # 所有阈值都是"待回测的初始参数"，不是已验证的结论。规则每年最多改一次，改动写进 CHANGELOG。
 
 universe:
-  core: [VOO, VUG, QQQM]          # 核心仓：只受抄底阶梯影响，不因择时卖出
-  satellite: [SMH, SOXX, DRAM]    # 卫星仓：受"两把钥匙"降风险规则影响
-  reference: [QQQ, SPY]           # 历史更长，用于趋势判断
+  core: [QQQM, VOO]               # 实际持仓（目标 70/30）：只受抄底阶梯影响，不因择时卖出
+  satellite: []                   # 暂无卫星仓
+  reference: [QQQ, SPY, SOXX, SMH, IGV, DRAM, VUG, SCHG]   # 观察名单：只看数据和黄色报警，不触发买入
 
 watchlist: []                     # 观察名单，最多 10 只（只用于想法收件箱，不触发交易规则）
 
 monthly_dca_sgd: null            # 每月固定定投额（SGD）；公开仓库不写具体数字，报警以“N× 月定投额”表示
 
 drawdown_ladder:                  # 抄底阶梯（红色报警）
-  tickers: [QQQM, SMH]
+  tickers: [QQQM, VOO]
   reset_within_pct_of_high: 0.02  # 回到距高点 2% 以内视为"新高"，阶梯重置
   levels:
     - {drawdown: -0.10, extra_multiple: 0.5}   # 额外投入 = 0.5 × 月定投额
@@ -23,8 +23,8 @@ two_key:                          # 降风险：两把钥匙同时转动才触�
   ma_months: 10                   # 钥匙1：上一个完整月的月末收盘 < 10 个月均线
   hy_oas_above_12m_mean_pp: 1.0   # 钥匙2a：高收益债利差高于过去 12 个月均值 1.0 个百分点
   sahm_threshold: 0.5             # 钥匙2b：Sahm 规则 ≥ 0.5（满足 2a 或 2b 即算第二把钥匙）
-  action: "暂停加仓卫星仓（SMH/SOXX/DRAM），卫星仓减半；核心仓不动，核心定投照常"
-  resume: "趋势钥匙解除（月末重新站上 10 个月均线）→ 卫星仓分 3 个月买回"
+  action: "不卖出已有持仓；新增资金暂时全部买 VOO，暂停买 QQQM"
+  resume: "趋势钥匙解除（月末重新站上 10 个月均线）→ 新增资金恢复 70/30"
 
 watch:                            # 观察区（黄色报警）：只记录，不行动
   vix_level: 30
