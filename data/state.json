@@ -1,0 +1,12 @@
+{
+  "ladder": {
+    "QQQM": 0,
+    "SMH": 2
+  },
+  "two_key_active": false,
+  "keys": {
+    "trend": false,
+    "macro": false
+  },
+  "last_data_date": "2026-11-17"
+}
