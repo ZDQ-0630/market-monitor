@@ -8,5 +8,17 @@
     "trend": false,
     "macro": false
   },
-  "last_data_date": "2026-11-17"
+  "last_data_date": "2026-11-18",
+  "last_alerts": [
+    {
+      "level": "yellow",
+      "code": "VIX_INVERT",
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.02）"
+    },
+    {
+      "level": "yellow",
+      "code": "MA200_SPY",
+      "msg": "SPY 收盘跌破 200 日均线"
+    }
+  ]
 }
