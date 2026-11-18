@@ -8,7 +8,7 @@ universe:
 
 watchlist: []                     # 观察名单，最多 10 只（只用于想法收件箱，不触发交易规则）
 
-monthly_dca_sgd: 300             # 示例：每月固定定投额，请改成你的真实数字
+monthly_dca_sgd: null            # 每月固定定投额（SGD）；公开仓库不写具体数字，报警以“N× 月定投额”表示
 
 drawdown_ladder:                  # 抄底阶梯（红色报警）
   tickers: [QQQM, SMH]
