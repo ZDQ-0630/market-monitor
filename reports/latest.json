@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-11-18T13:29:31Z",
+  "run_at_utc": "2026-11-18T13:35:21Z",
   "run_date_sgt": "2026-11-18",
   "level": "white",
   "alerts": [],
@@ -10,12 +10,12 @@
       "high": 716.2000122070312,
       "drawdown": -0.060053070416860255,
       "ret_1d": -0.010393095614505743,
-      "ma200": 670.7077673339844,
+      "ma200": 670.7077685546875,
       "below_ma200": false,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": 0.009580850688695186
+      "close_vs_ma_month": 0.009580841447575317
     },
     "VUG": {
       "as_of": "2026-11-17",
@@ -23,12 +23,12 @@
       "high": 92.63999938964844,
       "drawdown": -0.12089806802712122,
       "ret_1d": -0.00828056846605607,
-      "ma200": 84.067320022583,
+      "ma200": 84.06732028961181,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.025961908221894037
+      "close_vs_ma_month": -0.025961917109896593
     },
     "QQQM": {
       "as_of": "2026-11-17",
@@ -62,12 +62,12 @@
       "high": 218.1940155029297,
       "drawdown": -0.3516778799464012,
       "ret_1d": 0.0016995148781295821,
-      "ma200": 160.51587390899658,
+      "ma200": 160.51587425231935,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": true,
-      "close_vs_ma_month": -0.10671455164041299
+      "close_vs_ma_month": -0.10671456024771242
     },
     "DRAM": {
       "as_of": "2026-11-17",
@@ -88,7 +88,7 @@
       "high": 759.6599731445312,
       "drawdown": -0.13520517674814836,
       "ret_1d": -0.007253476075509968,
-      "ma200": 681.5753060913086,
+      "ma200": 681.5753042602539,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
