@@ -64,6 +64,7 @@ def run(root: Path = ROOT, fetcher=fetch.fetch_all, now: dt.datetime | None = No
         "run_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "run_date_sgt": run_date,
         "level": level, "alerts": alerts, "etf": px, "macro": macro,
         "state": new_state, "data_issues": issues,
+        "sources": dict(getattr(fetch, "LAST_SOURCES", {})),
     })
     (root / "reports/daily").mkdir(parents=True, exist_ok=True)
     (root / "reports/latest.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
