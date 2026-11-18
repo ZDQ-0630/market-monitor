@@ -2,11 +2,25 @@
 # 所有阈值都是"待回测的初始参数"，不是已验证的结论。规则每年最多改一次，改动写进 CHANGELOG。
 
 universe:
-  core: [QQQM, VOO]               # 实际持仓（目标 70/30）：只受抄底阶梯影响，不因择时卖出
-  satellite: []                   # 暂无卫星仓
+  core: [QQQM, VOO]               # 核心仓：只受抄底阶梯影响，不因择时卖出
+  satellite: []                   # 卫星仓当前持仓（买入后在此添加代码，纳入监控）
   reference: [QQQ, SPY, SOXX, SMH, IGV, DRAM, VUG, SCHG]   # 观察名单：只看数据和黄色报警，不触发买入
 
 watchlist: []                     # 观察名单，最多 10 只（只用于想法收件箱，不触发交易规则）
+
+allocation:                       # 目标配置（按市值）
+  core_weight: 0.90                # 核心仓 90%
+  core_split: {QQQM: 0.65, VOO: 0.35}   # 核心仓内部 65/35（≈ 总仓位 58.5% / 31.5%）
+  satellite_weight: 0.10           # 卫星仓 10%
+  rebalance: "偏离目标超过 10 个百分点时，用新追加资金补低配部分，不卖出"
+
+satellite_rules:                  # 卫星仓纪律（个股或行业 ETF）
+  max_total: 0.10                  # 总上限 10%；涨到 15% 以上时用新资金稀释
+  max_single: 0.05                 # 单只上限 5%
+  pre_trade_note: "买前写三句话：为什么买 / 什么情况说明看错 / 多久复盘"
+  cooling_off_days: 7              # 想法出现后 7 天冷静期
+  no_leverage_or_options: true     # 默认不碰杠杆 ETF 与期权（至少第一年）
+  idle_cash: "暂无标的时可停放在 VOO"
 
 monthly_dca_sgd: null            # 每月固定定投额（SGD）；公开仓库不写具体数字，报警以“N× 月定投额”表示
 
@@ -23,8 +37,8 @@ two_key:                          # 降风险：两把钥匙同时转动才触�
   ma_months: 10                   # 钥匙1：上一个完整月的月末收盘 < 10 个月均线
   hy_oas_above_12m_mean_pp: 1.0   # 钥匙2a：高收益债利差高于过去 12 个月均值 1.0 个百分点
   sahm_threshold: 0.5             # 钥匙2b：Sahm 规则 ≥ 0.5（满足 2a 或 2b 即算第二把钥匙）
-  action: "不卖出已有持仓；新增资金暂时全部买 VOO，暂停买 QQQM"
-  resume: "趋势钥匙解除（月末重新站上 10 个月均线）→ 新增资金恢复 70/30"
+  action: "核心仓不卖出；新增资金暂时全部买 VOO，暂停买 QQQM；卫星仓停止加仓"
+  resume: "趋势钥匙解除（月末重新站上 10 个月均线）→ 新增资金恢复核心 65/35，卫星仓可恢复"
 
 watch:                            # 观察区（黄色报警）：只记录，不行动
   vix_level: 30
