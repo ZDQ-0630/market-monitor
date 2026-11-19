@@ -1,5 +1,5 @@
 {
-  "run_at_utc": "2026-11-19T02:46:23Z",
+  "run_at_utc": "2026-11-19T02:53:35Z",
   "run_date_sgt": "2026-11-19",
   "level": "yellow",
   "alerts": [
@@ -23,7 +23,7 @@
       "high": 312.760009765625,
       "drawdown": -0.13166652355657205,
       "ret_1d": 0.004289524025340885,
-      "ma200": 280.7122947692871,
+      "ma200": 280.7122940826416,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -36,7 +36,7 @@
       "high": 716.2000122070312,
       "drawdown": -0.06267804228333518,
       "ret_1d": -0.002792680931080982,
-      "ma200": 670.9208071899415,
+      "ma200": 670.9208062744141,
       "below_ma200": false,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -49,12 +49,12 @@
       "high": 759.6599731445312,
       "drawdown": -0.13183525119053752,
       "ret_1d": 0.0038967920100851927,
-      "ma200": 681.8007171630859,
+      "ma200": 681.8007211303711,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.02628903152497264
+      "close_vs_ma_month": -0.026289040299400268
     },
     "SPY": {
       "as_of": "2026-11-18",
@@ -62,12 +62,12 @@
       "high": 779.0900268554688,
       "drawdown": -0.06275271530013726,
       "ret_1d": -0.0030582576414567297,
-      "ma200": 730.0240509033204,
+      "ma200": 730.0240539550781,
       "below_ma200": false,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": 0.0063885279821942476
+      "close_vs_ma_month": 0.006388511050533285
     },
     "SOXX": {
       "as_of": "2026-11-18",
@@ -75,12 +75,12 @@
       "high": 218.1940155029297,
       "drawdown": -0.3498904826671976,
       "ret_1d": 0.0027569586536022594,
-      "ma200": 160.65006118774414,
+      "ma200": 160.6500616836548,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": true,
-      "close_vs_ma_month": -0.10425180059342098
+      "close_vs_ma_month": -0.10425181785547954
     },
     "SMH": {
       "as_of": "2026-11-18",
@@ -127,7 +127,7 @@
       "high": 92.63999938964844,
       "drawdown": -0.11755180765756013,
       "ret_1d": 0.003806453208505145,
-      "ma200": 84.08279468536377,
+      "ma200": 84.08279491424561,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -140,12 +140,12 @@
       "high": 36.93000030517578,
       "drawdown": -0.10750070912257004,
       "ret_1d": 0.00304316714131736,
-      "ma200": 33.49571784973145,
+      "ma200": 33.4957179069519,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.01113153501617914
+      "close_vs_ma_month": -0.011131523698693746
     }
   },
   "macro": {
