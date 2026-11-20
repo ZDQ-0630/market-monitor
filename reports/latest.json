@@ -1,22 +1,25 @@
 {
-  "run_at_utc": "2026-11-20T03:59:25Z",
+  "run_at_utc": "2026-11-20T04:12:59Z",
   "run_date_sgt": "2026-11-20",
   "level": "yellow",
   "alerts": [
     {
       "level": "yellow",
       "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.01）"
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.01）",
+      "repeat": true
     },
     {
       "level": "yellow",
       "code": "MA200_VOO",
-      "msg": "VOO 收盘跌破 200 日均线"
+      "msg": "VOO 收盘跌破 200 日均线",
+      "repeat": true
     },
     {
       "level": "yellow",
       "code": "MA200_SPY",
-      "msg": "SPY 收盘跌破 200 日均线"
+      "msg": "SPY 收盘跌破 200 日均线",
+      "repeat": true
     }
   ],
   "etf": {
@@ -26,12 +29,12 @@
       "high": 312.760009765625,
       "drawdown": -0.13166652355657205,
       "ret_1d": 0.004289524025340885,
-      "ma200": 280.7122943878174,
+      "ma200": 280.7122947692871,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.02606030080672339
+      "close_vs_ma_month": -0.02606030613622301
     },
     "VOO": {
       "as_of": "2026-11-19",
@@ -39,12 +42,12 @@
       "high": 716.2000122070312,
       "drawdown": -0.08124825670148872,
       "ret_1d": -0.01981199124299926,
-      "ma200": 671.0834051513672,
+      "ma200": 671.0834039306641,
       "below_ma200": true,
       "crossed_below_ma200": true,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.013184543842170049
+      "close_vs_ma_month": -0.01318453480943138
     },
     "QQQ": {
       "as_of": "2026-11-19",
@@ -52,12 +55,12 @@
       "high": 759.6599731445312,
       "drawdown": -0.15088328879923774,
       "ret_1d": -0.021940579405949512,
-      "ma200": 682.0074475097656,
+      "ma200": 682.007451171875,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.047652814347243
+      "close_vs_ma_month": -0.047652822929154626
     },
     "SPY": {
       "as_of": "2026-11-19",
@@ -65,7 +68,7 @@
       "high": 779.0900268554688,
       "drawdown": -0.08114599026950375,
       "ret_1d": -0.01962478341589069,
-      "ma200": 730.1990441894532,
+      "ma200": 730.1990438842773,
       "below_ma200": true,
       "crossed_below_ma200": true,
       "last_month_end": "2026-10",
@@ -78,12 +81,12 @@
       "high": 218.1940155029297,
       "drawdown": -0.36776452539144033,
       "ret_1d": -0.02749389487108933,
-      "ma200": 160.79013805389405,
+      "ma200": 160.79013736724855,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": true,
-      "close_vs_ma_month": -0.12887942420633036
+      "close_vs_ma_month": -0.12887940741887305
     },
     "SMH": {
       "as_of": "2026-11-19",
@@ -130,7 +133,7 @@
       "high": 92.63999938964844,
       "drawdown": -0.13708977797835864,
       "ret_1d": -0.02214064291857798,
-      "ma200": 84.09426986694336,
+      "ma200": 84.09427005767822,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -143,12 +146,12 @@
       "high": 36.93000030517578,
       "drawdown": -0.1280801381843859,
       "ret_1d": -0.023058202143313666,
-      "ma200": 33.50182622909546,
+      "ma200": 33.501826171875,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.033933052918399764
+      "close_vs_ma_month": -0.03393306950318675
     }
   },
   "macro": {
@@ -207,7 +210,9 @@
       }
     ]
   },
-  "data_issues": [],
+  "data_issues": [
+    "价格数据日期未更新（2026-11-19），可能是美股休市或数据源延迟；以下报警沿用上次结果"
+  ],
   "sources": {
     "VIXCLS": "FRED API",
     "VXVCLS": "FRED API",
