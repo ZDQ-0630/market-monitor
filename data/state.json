@@ -1,29 +1,70 @@
 {
   "ladder": {
     "QQQM": 0,
-    "SMH": 2
+    "SMH": 2,
+    "VOO": 0
   },
   "two_key_active": false,
   "keys": {
     "trend": false,
     "macro": false
   },
-  "last_data_date": "2026-11-19",
+  "last_data_date": "2026-11-20",
   "last_alerts": [
+    {
+      "level": "red",
+      "code": "LADDER_VOO_0",
+      "msg": "VOO 距高点回撤 -11.3%，越过抄底阶梯第 1 档（-10%）→ 按规则额外投入 0.5× 月定投额（限价单分批执行）"
+    },
     {
       "level": "yellow",
       "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.01）"
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.05）"
     },
     {
       "level": "yellow",
-      "code": "MA200_VOO",
-      "msg": "VOO 收盘跌破 200 日均线"
+      "code": "BIGMOVE_QQQM",
+      "msg": "QQQM 单日 -5.4%"
     },
     {
       "level": "yellow",
-      "code": "MA200_SPY",
-      "msg": "SPY 收盘跌破 200 日均线"
+      "code": "BIGMOVE_QQQ",
+      "msg": "QQQ 单日 -5.7%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SOXX",
+      "msg": "SOXX 单日 -10.5%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SMH",
+      "msg": "SMH 单日 -10.6%"
+    },
+    {
+      "level": "yellow",
+      "code": "MA200_IGV",
+      "msg": "IGV 收盘跌破 200 日均线"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_IGV",
+      "msg": "IGV 单日 -4.6%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_DRAM",
+      "msg": "DRAM 单日 -13.2%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_VUG",
+      "msg": "VUG 单日 -5.3%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SCHG",
+      "msg": "SCHG 单日 -5.2%"
     }
   ]
 }

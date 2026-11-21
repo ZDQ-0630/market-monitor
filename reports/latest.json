@@ -1,125 +1,162 @@
 {
-  "run_at_utc": "2026-11-20T04:12:59Z",
-  "run_date_sgt": "2026-11-20",
-  "level": "yellow",
+  "run_at_utc": "2026-11-21T04:14:29Z",
+  "run_date_sgt": "2026-11-21",
+  "level": "red",
   "alerts": [
+    {
+      "level": "red",
+      "code": "LADDER_VOO_0",
+      "msg": "VOO 距高点回撤 -11.3%，越过抄底阶梯第 1 档（-10%）→ 按规则额外投入 0.5× 月定投额（限价单分批执行）"
+    },
     {
       "level": "yellow",
       "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.01）",
-      "repeat": true
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.05）"
     },
     {
       "level": "yellow",
-      "code": "MA200_VOO",
-      "msg": "VOO 收盘跌破 200 日均线",
-      "repeat": true
+      "code": "BIGMOVE_QQQM",
+      "msg": "QQQM 单日 -5.4%"
     },
     {
       "level": "yellow",
-      "code": "MA200_SPY",
-      "msg": "SPY 收盘跌破 200 日均线",
-      "repeat": true
+      "code": "BIGMOVE_QQQ",
+      "msg": "QQQ 单日 -5.7%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SOXX",
+      "msg": "SOXX 单日 -10.5%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SMH",
+      "msg": "SMH 单日 -10.6%"
+    },
+    {
+      "level": "yellow",
+      "code": "MA200_IGV",
+      "msg": "IGV 收盘跌破 200 日均线"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_IGV",
+      "msg": "IGV 单日 -4.6%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_DRAM",
+      "msg": "DRAM 单日 -13.2%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_VUG",
+      "msg": "VUG 单日 -5.3%"
+    },
+    {
+      "level": "yellow",
+      "code": "BIGMOVE_SCHG",
+      "msg": "SCHG 单日 -5.2%"
     }
   ],
   "etf": {
     "QQQM": {
-      "as_of": "2026-11-18",
-      "close": 271.5799865722656,
+      "as_of": "2026-11-20",
+      "close": 251.22999572753906,
       "high": 312.760009765625,
-      "drawdown": -0.13166652355657205,
-      "ret_1d": 0.004289524025340885,
-      "ma200": 280.7122947692871,
+      "drawdown": -0.19673235745258832,
+      "ret_1d": -0.05424641667773378,
+      "ma200": 280.82944480896,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.02606030613622301
+      "close_vs_ma_month": -0.09903941421604445
     },
     "VOO": {
-      "as_of": "2026-11-19",
-      "close": 658.010009765625,
+      "as_of": "2026-11-20",
+      "close": 635.5399780273438,
       "high": 716.2000122070312,
-      "drawdown": -0.08124825670148872,
-      "ret_1d": -0.01981199124299926,
-      "ma200": 671.0834039306641,
-      "below_ma200": true,
-      "crossed_below_ma200": true,
-      "last_month_end": "2026-10",
-      "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.01318453480943138
-    },
-    "QQQ": {
-      "as_of": "2026-11-19",
-      "close": 645.0399780273438,
-      "high": 759.6599731445312,
-      "drawdown": -0.15088328879923774,
-      "ret_1d": -0.021940579405949512,
-      "ma200": 682.007451171875,
+      "drawdown": -0.11262221838160369,
+      "ret_1d": -0.034148464924241506,
+      "ma200": 671.1723693847656,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.047652822929154626
+      "close_vs_ma_month": -0.04688277683347508
     },
-    "SPY": {
-      "as_of": "2026-11-19",
-      "close": 715.8699951171875,
-      "high": 779.0900268554688,
-      "drawdown": -0.08114599026950375,
-      "ret_1d": -0.01962478341589069,
-      "ma200": 730.1990438842773,
+    "QQQ": {
+      "as_of": "2026-11-20",
+      "close": 608.4500122070312,
+      "high": 759.6599731445312,
+      "drawdown": -0.19904953042554363,
+      "ret_1d": -0.0567251132747022,
+      "ma200": 682.0746823120118,
       "below_ma200": true,
-      "crossed_below_ma200": true,
+      "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.013361645511074216
+      "close_vs_ma_month": -0.10167482442534126
+    },
+    "SPY": {
+      "as_of": "2026-11-20",
+      "close": 689.8099975585938,
+      "high": 779.0900268554688,
+      "drawdown": -0.11459526655375551,
+      "ret_1d": -0.03640325441259451,
+      "ma200": 730.286252746582,
+      "below_ma200": true,
+      "crossed_below_ma200": false,
+      "last_month_end": "2026-10",
+      "trend_below_ma_month_end": false,
+      "close_vs_ma_month": -0.04927849254275818
     },
     "SOXX": {
-      "as_of": "2026-11-19",
-      "close": 137.9499969482422,
+      "as_of": "2026-11-20",
+      "close": 123.4000015258789,
       "high": 218.1940155029297,
-      "drawdown": -0.36776452539144033,
-      "ret_1d": -0.02749389487108933,
-      "ma200": 160.79013736724855,
+      "drawdown": -0.4344482764962817,
+      "ret_1d": -0.10547296661283967,
+      "ma200": 160.85671508789062,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": true,
-      "close_vs_ma_month": -0.12887940741887305
+      "close_vs_ma_month": -0.2207590805959394
     },
     "SMH": {
-      "as_of": "2026-11-19",
-      "close": 447.4800109863281,
+      "as_of": "2026-11-20",
+      "close": 400.05999755859375,
       "high": 668.9099731445312,
-      "drawdown": -0.33103103713234483,
-      "ret_1d": -0.026243629138582025,
-      "ma200": 525.0755006408691,
+      "drawdown": -0.40192251032239745,
+      "ret_1d": -0.1059712439963787,
+      "ma200": 525.170450592041,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.13670894925141341
+      "close_vs_ma_month": -0.22819297583018205
     },
     "IGV": {
-      "as_of": "2026-11-19",
-      "close": 96.0999984741211,
+      "as_of": "2026-11-20",
+      "close": 91.66000366210938,
       "high": 117.7679214477539,
-      "drawdown": -0.18398832812248866,
-      "ret_1d": -0.008665194410252708,
-      "ma200": 94.36080173492432,
-      "below_ma200": false,
-      "crossed_below_ma200": false,
+      "drawdown": -0.22168955233897836,
+      "ret_1d": -0.04620181979719151,
+      "ma200": 94.4208264541626,
+      "below_ma200": true,
+      "crossed_below_ma200": true,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": 0.01871206084758925
+      "close_vs_ma_month": -0.028354290212916577
     },
     "DRAM": {
-      "as_of": "2026-11-18",
-      "close": 39.150001525878906,
+      "as_of": "2026-11-20",
+      "close": 33.36000061035156,
       "high": 80.72000122070312,
-      "drawdown": -0.514990077628521,
-      "ret_1d": 0.005651200076509433,
+      "drawdown": -0.5867195229700348,
+      "ret_1d": -0.1319281721197746,
       "ma200": null,
       "below_ma200": null,
       "crossed_below_ma200": false,
@@ -128,91 +165,130 @@
       "close_vs_ma_month": null
     },
     "VUG": {
-      "as_of": "2026-11-19",
-      "close": 79.94000244140625,
+      "as_of": "2026-11-20",
+      "close": 75.69000244140625,
       "high": 92.63999938964844,
-      "drawdown": -0.13708977797835864,
-      "ret_1d": -0.02214064291857798,
-      "ma200": 84.09427005767822,
+      "drawdown": -0.18296628950686478,
+      "ret_1d": -0.053164872031560506,
+      "ma200": 84.09154739379883,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.04390219670258688
+      "close_vs_ma_month": -0.09473301406454993
     },
     "SCHG": {
-      "as_of": "2026-11-19",
-      "close": 32.20000076293945,
+      "as_of": "2026-11-20",
+      "close": 30.530000686645508,
       "high": 36.93000030517578,
-      "drawdown": -0.1280801381843859,
-      "ret_1d": -0.023058202143313666,
-      "ma200": 33.501826171875,
+      "drawdown": -0.17330082766431243,
+      "ret_1d": -0.051863355177805714,
+      "ma200": 33.50267436027527,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.03393306950318675
+      "close_vs_ma_month": -0.0840365366035275
     }
   },
   "macro": {
     "as_of": {
-      "VIXCLS": "2026-11-18",
-      "VXVCLS": "2026-11-18",
-      "BAMLH0A0HYM2": "2026-11-18",
-      "T10Y3M": "2026-11-19",
-      "DFII10": "2026-11-18",
-      "DGS10": "2026-11-18",
+      "VIXCLS": "2026-11-19",
+      "VXVCLS": "2026-11-19",
+      "BAMLH0A0HYM2": "2026-11-19",
+      "T10Y3M": "2026-11-20",
+      "DFII10": "2026-11-19",
+      "DGS10": "2026-11-19",
       "NFCI": "2026-11-13",
       "SAHMREALTIME": "2026-10-01",
       "DTWEXBGS": "2026-11-13"
     },
-    "vix": 24.56,
-    "vix3m": 24.29,
-    "vix_term_ratio": 1.0111156854672705,
-    "hy_oas": 3.47,
-    "hy_oas_chg_20d": 0.20000000000000018,
-    "hy_oas_12m_mean": 2.896666666666667,
-    "hy_oas_vs_12m_mean": 0.5733333333333333,
-    "t10y3m": 0.7,
+    "vix": 28.44,
+    "vix3m": 27.03,
+    "vix_term_ratio": 1.0521642619311875,
+    "hy_oas": 3.52,
+    "hy_oas_chg_20d": 0.1200000000000001,
+    "hy_oas_12m_mean": 2.899166666666667,
+    "hy_oas_vs_12m_mean": 0.6208333333333331,
+    "t10y3m": 0.6,
     "real_10y": 2.88,
-    "ust_10y": 5.07,
+    "ust_10y": 5.04,
     "nfci": -0.478,
     "sahm": 0.0,
     "usd_broad": 122.6503,
-    "real_10y_chg_20d": 0.10999999999999988
+    "real_10y_chg_20d": 0.1200000000000001
   },
   "state": {
     "ladder": {
       "QQQM": 0,
-      "SMH": 2
+      "SMH": 2,
+      "VOO": 0
     },
     "two_key_active": false,
     "keys": {
       "trend": false,
       "macro": false
     },
-    "last_data_date": "2026-11-19",
+    "last_data_date": "2026-11-20",
     "last_alerts": [
+      {
+        "level": "red",
+        "code": "LADDER_VOO_0",
+        "msg": "VOO 距高点回撤 -11.3%，越过抄底阶梯第 1 档（-10%）→ 按规则额外投入 0.5× 月定投额（限价单分批执行）"
+      },
       {
         "level": "yellow",
         "code": "VIX_INVERT",
-        "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.01）"
+        "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.05）"
       },
       {
         "level": "yellow",
-        "code": "MA200_VOO",
-        "msg": "VOO 收盘跌破 200 日均线"
+        "code": "BIGMOVE_QQQM",
+        "msg": "QQQM 单日 -5.4%"
       },
       {
         "level": "yellow",
-        "code": "MA200_SPY",
-        "msg": "SPY 收盘跌破 200 日均线"
+        "code": "BIGMOVE_QQQ",
+        "msg": "QQQ 单日 -5.7%"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_SOXX",
+        "msg": "SOXX 单日 -10.5%"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_SMH",
+        "msg": "SMH 单日 -10.6%"
+      },
+      {
+        "level": "yellow",
+        "code": "MA200_IGV",
+        "msg": "IGV 收盘跌破 200 日均线"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_IGV",
+        "msg": "IGV 单日 -4.6%"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_DRAM",
+        "msg": "DRAM 单日 -13.2%"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_VUG",
+        "msg": "VUG 单日 -5.3%"
+      },
+      {
+        "level": "yellow",
+        "code": "BIGMOVE_SCHG",
+        "msg": "SCHG 单日 -5.2%"
       }
     ]
   },
-  "data_issues": [
-    "价格数据日期未更新（2026-11-19），可能是美股休市或数据源延迟；以下报警沿用上次结果"
-  ],
+  "data_issues": [],
   "sources": {
     "VIXCLS": "FRED API",
     "VXVCLS": "FRED API",
