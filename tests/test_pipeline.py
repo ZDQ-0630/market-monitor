@@ -81,7 +81,14 @@ def test_full_run_offline(tmp_path):
     assert out["run_date_sgt"] == "2026-11-18"
     assert (tmp_path / "reports/latest.json").exists()
     assert (tmp_path / "reports/daily/2026-11-18.md").exists()
-    json.loads((tmp_path / "reports/latest.json").read_text())
+    latest = json.loads((tmp_path / "reports/latest.json").read_text())
+    assert latest["framework"]["ticker"] == "QQQ" and set(latest["framework"]["dims"]) == {
+        "price", "panic", "credit", "macro", "policy", "theme"}
+    assert latest["technical"]["rsi14"] is not None
+    et = latest["framework"]["early_trigger"]
+    assert et["required"] == 5 and et["met"] == (et["days_above_ma200"] >= 5)
+    assert "fw_data_score" in (tmp_path / "data/snapshots.csv").read_text().splitlines()[0]
+    assert "抄底框架" in (tmp_path / "reports/daily/2026-11-18.md").read_text()
     # 第二次运行：数据日期未变 → 不重复报警，并记录数据问题
     out2 = run.run(tmp_path, fetcher=fake_fetch, now=now + dt.timedelta(days=1))
     assert all(a.get("repeat") for a in out2["alerts"]) and any("未更新" in i for i in out2["data_issues"])

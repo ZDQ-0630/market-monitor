@@ -47,6 +47,37 @@ watch:                            # 观察区（黄色报警）：只记录，�
   nfci_above: 0.0                 # 芝加哥联储金融条件指数 > 0 表示偏紧
   daily_move_abs: 0.04            # 单日涨跌幅绝对值 ≥ 4%
 
+# ---------------------------------------------------------------------------
+# 建仓执行计划（一次性，2026-11-26 用户确认）
+# 这是首次建仓怎么执行的计划，不修改上面任何一条 IPS 规则，不占用"规则每年最多改一次"的名额。
+# 第一半和第二半都买完后，把 status 改成 completed，并在 CHANGELOG 记一笔。
+# 抄底框架 6 个维度：价格、恐慌、信用、宏观由 GitHub Action 计算，写进 latest.json 的 framework；
+# 政策、主线需要检索新闻，由 Claude 定时任务判断。标准事先写死，计划期内不改。
+entry_plan:
+  status: active                  # active / completed
+  confirmed: "2026-11-26"
+  first_half:
+    weight: 0.50                  # 计划总额的 50%
+    trigger_score: 4              # 抄底框架得分 ≥ 4/6 时买入
+    deadline: "2027-02-26"        # 到期即使得分不到也照买，免得一直等下去
+    early_trigger:                # 大涨时提前买（2026-11-26 用户要求）：市场直接涨回去时不必等到截止日
+      ticker: QQQ
+      above_ma200_days: 5         # QQQ 收盘连续 5 个交易日站上 200 日均线 → 提前买第一半
+    # 第一半在以下三者中最早满足的那天触发：得分 ≥ trigger_score、early_trigger、deadline
+  second_half:
+    weight: 0.50                  # 分 3 次，在第一半触发日满 1、2、3 个月的那天各买计划总额的 1/6（遇休市顺延）
+    months_after_first: [1, 2, 3]
+  split: {QQQM: 0.65, VOO: 0.35}
+  two_key_override: "买入当天两把钥匙处于触发状态时，按 IPS 这笔钱全部买 VOO、不买 QQQM"
+  framework:
+    ticker: QQQ                   # 价格维度和技术位置用 QQQ（跟踪纳指100）；"本轮" = 最近一次 52 周高点之后
+    price: {min_days_since_low: 20, min_rebound_from_low: 0.05}   # 本轮最低收盘在 ≥20 个交易日前，且已反弹 ≥5%
+    panic: {vix_spike: 30}        # 本轮内 VIX 曾 ≥ 30，且最新 VIX < VIX3M
+    credit: {hy_off_peak_pp: 0.30}  # 高收益债利差比本轮最高值低 ≥ 0.3 个百分点
+    macro: {sahm_below: 0.5}      # Sahm < 0.5，且首次申领失业金 4 周均值不高于一年前同期
+    policy: "下一次 FOMC 加息概率 < 50%（Claude 定时任务检索）"
+    theme: "AI 龙头指引没有下调，且大型云厂商没有削减资本开支（Claude 定时任务检索）"
+
 fred_series:                      # 免费、无需 API key（fredgraph.csv 接口）
   VIXCLS: "VIX"
   VXVCLS: "VIX 3个月"
@@ -57,3 +88,4 @@ fred_series:                      # 免费、无需 API key（fredgraph.csv 接�
   NFCI: "芝加哥联储金融条件指数（周）"
   SAHMREALTIME: "Sahm 规则实时值（月）"
   DTWEXBGS: "美元广义指数"
+  ICSA: "首次申领失业金人数（周）"

@@ -7,7 +7,10 @@
 | 新加坡时间 | 谁 | 做什么 |
 |---|---|---|
 | 07:37（周二–周六） | GitHub Actions | 拉取 FRED 宏观/信用数据和 ETF 价格 → 计算指标 → 对照 `config/ips.yaml` 规则 → 写入 `reports/` 和 `data/` 并提交 |
-| 约 08:1x | Claude 定时任务 | 读取 `reports/latest.json`，按报警等级决定检索多少，生成简报（见 `CLAUDE_TASK.md`） |
+| 16:23（周二–周六） | Claude 定时任务「美股规则复核」 | 读取 `reports/latest.json`，按报警等级决定检索多少，给出规则状态、一级数据、抄底框架得分和建仓提醒（见 `CLAUDE_TASK.md`） |
+| 09:47（周六） | Claude 定时任务「每周市场复盘」 | 一周回顾、面试素材、【Claude 研判】概率判断和打分 |
+
+注意：GitHub 的定时运行经常比 07:37 晚几个小时，所以 Claude 的规则复核放在下午。
 
 ## 报警等级
 - 🔴 **红色（规则触发，需要行动）**：抄底阶梯越过新档位；"两把钥匙"降风险规则触发或解除
@@ -15,11 +18,12 @@
 - ⚪ **白色**：无事
 
 ## 文件
-- `config/ips.yaml`：你的投资规则和阈值（**阈值都是待回测的初始参数**；规则每年最多改一次）
+- `config/ips.yaml`：你的投资规则和阈值（**阈值都是待回测的初始参数**；规则每年最多改一次）；末尾的 `entry_plan` 是一次性的建仓执行计划，不算规则修改
+- `CHANGELOG.md`：规则和代码的每次改动
 - `monitor/`：采集（`fetch.py`）、指标（`indicators.py`）、规则（`rules.py`）、报告（`report.py`）、入口（`run.py`）
 - `data/snapshots.csv`：只追加的点时快照，以后用于复盘和回测，不会产生前视偏差
 - `data/state.json`：规则状态（同一档位只报警一次）
-- `reports/latest.json`、`reports/daily/*.md`：机器摘要和每日日报
+- `reports/latest.json`、`reports/daily/*.md`：机器摘要和每日日报（含抄底框架的数据维度 `framework` 和技术位置 `technical`）
 - `tests/`：离线测试（合成数据），每次运行前自动执行
 
 ## 上线步骤

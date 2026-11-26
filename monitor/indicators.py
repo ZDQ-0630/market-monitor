@@ -67,3 +67,118 @@ def macro_indicators(fred: dict[str, pd.Series]) -> dict:
     r = g("DFII10")
     out["real_10y_chg_20d"] = float(r.iloc[-1] - r.iloc[-21]) if r is not None and len(r) > 20 else NaN
     return out
+
+
+# ---------------------------------------------------------------------------
+# 技术位置与抄底框架（建仓执行计划用；只描述状态，不触发任何报警）
+def rsi(close: pd.Series, n: int = 14) -> float:
+    """Wilder 平滑的 RSI，返回最新值。"""
+    close = close.dropna()
+    if len(close) <= n:
+        return NaN
+    d = close.diff()
+    gain = d.clip(lower=0).ewm(alpha=1 / n, adjust=False).mean()
+    loss = (-d.clip(upper=0)).ewm(alpha=1 / n, adjust=False).mean()
+    g, lo = float(gain.iloc[-1]), float(loss.iloc[-1])
+    if lo == 0:
+        return 100.0 if g > 0 else 50.0
+    return 100 - 100 / (1 + g / lo)
+
+
+def technical_indicators(close: pd.Series) -> dict:
+    """位置读数：RSI(14)、距 200 日线、50/200 日线相对位置、距 52 周高点。只作参考，不计分。"""
+    close = close.dropna().sort_index()
+    last = float(close.iloc[-1])
+    ma50, ma200 = close.rolling(50).mean(), close.rolling(200).mean()
+    high52 = float(close.iloc[-252:].max())
+    m50, m200 = _last(ma50), _last(ma200)
+    above = (close > ma200).to_numpy()[::-1]            # 从最新一天往回数，连续站上 200 日线的天数
+    days_above = int(above.argmin()) if not above.all() else int(above.size)
+    return {
+        "as_of": close.index[-1].strftime("%Y-%m-%d"),
+        "rsi14": rsi(close),
+        "vs_ma200": last / m200 - 1 if not math.isnan(m200) else NaN,
+        "ma50_above_ma200": bool(m50 > m200) if not (math.isnan(m50) or math.isnan(m200)) else None,
+        "days_above_ma200": days_above,
+        "dd_52w": last / high52 - 1,
+    }
+
+
+def _window(s: pd.Series | None, start) -> pd.Series | None:
+    if s is None or not len(s):
+        return None
+    w = s.dropna().sort_index()
+    w = w[w.index >= start]
+    return w if len(w) else None
+
+
+def framework_indicators(close: pd.Series, fred: dict[str, pd.Series], fw: dict) -> dict:
+    """抄底框架中可以用数据计算的 4 个维度（价格、恐慌、信用、宏观），各 1/0；数据缺失记 None。
+
+    "本轮" = 最近一次创 52 周（252 个交易日）收盘新高之后的这段时间。
+    政策、主线两个维度需要检索新闻，由 Claude 定时任务判断，这里固定为 None。
+    """
+    close = close.dropna().sort_index()
+    notes: list[str] = []
+    roll_max = close.rolling(252, min_periods=1).max()
+    start = close.index[(close >= roll_max).to_numpy()][-1]
+    ep = close[close.index >= start]
+    low_date = ep.idxmin()
+    low = float(ep.min())
+    days_since_low = len(close[close.index > low_date])
+    rebound = float(close.iloc[-1]) / low - 1
+    pc = fw["price"]
+    price = int(days_since_low >= pc["min_days_since_low"] and rebound >= pc["min_rebound_from_low"])
+
+    vix, vix3m = _window(fred.get("VIXCLS"), start), fred.get("VXVCLS")
+    if vix is None or vix3m is None or not len(vix3m):
+        panic, vix_max = None, NaN
+        notes.append("VIX 或 VIX3M 缺失，恐慌维度无法计算")
+    else:
+        vix_max = float(vix.max())
+        panic = int(vix_max >= fw["panic"]["vix_spike"] and _last(fred["VIXCLS"]) < _last(vix3m))
+
+    hy = _window(fred.get("BAMLH0A0HYM2"), start)
+    if hy is None:
+        credit, hy_peak, hy_off = None, NaN, NaN
+        notes.append("高收益债利差缺失，信用维度无法计算")
+    else:
+        hy_peak = float(hy.max())
+        hy_off = hy_peak - float(hy.iloc[-1])
+        credit = int(hy_off >= fw["credit"]["hy_off_peak_pp"])
+
+    sahm, icsa = _last(fred.get("SAHMREALTIME")), fred.get("ICSA")
+    icsa_4w = icsa_yoy = NaN
+    if icsa is not None and len(icsa.dropna()) >= 56:
+        ic = icsa.dropna().sort_index()
+        icsa_4w = float(ic.iloc[-4:].mean())
+        icsa_yoy = icsa_4w / float(ic.iloc[-56:-52].mean()) - 1
+    if math.isnan(sahm):
+        macro = None
+        notes.append("Sahm 缺失，宏观维度无法计算")
+    elif math.isnan(icsa_yoy):
+        macro = int(sahm < fw["macro"]["sahm_below"])
+        notes.append("首次申领失业金缺失，宏观维度只看 Sahm")
+    else:
+        macro = int(sahm < fw["macro"]["sahm_below"] and icsa_yoy <= 0)
+
+    dims = {"price": price, "panic": panic, "credit": credit, "macro": macro, "policy": None, "theme": None}
+    return {
+        "ticker": fw.get("ticker", "QQQ"),
+        "as_of": close.index[-1].strftime("%Y-%m-%d"),
+        "episode_start": start.strftime("%Y-%m-%d"),
+        "episode_high": float(close[start]),
+        "episode_low": low,
+        "episode_low_date": low_date.strftime("%Y-%m-%d"),
+        "days_since_low": days_since_low,
+        "rebound_from_low": rebound,
+        "vix_max_in_episode": vix_max,
+        "hy_peak_in_episode": hy_peak,
+        "hy_off_peak_pp": hy_off,
+        "sahm": sahm,
+        "icsa_4w": icsa_4w,
+        "icsa_4w_yoy": icsa_yoy,
+        "dims": dims,
+        "data_score": sum(v for k, v in dims.items() if k in ("price", "panic", "credit", "macro") and v),
+        "notes": notes,
+    }

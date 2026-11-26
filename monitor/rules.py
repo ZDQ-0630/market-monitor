@@ -26,6 +26,8 @@ def evaluate(px: dict, macro: dict, cfg: dict, state: dict) -> tuple[list[dict],
     # ---- 红色 1：抄底阶梯 ----
     lad = cfg["drawdown_ladder"]
     dca = cfg.get("monthly_dca_sgd")
+    # 只保留当前阶梯标的的状态（清掉旧配置残留，例如已移出阶梯的 SMH）
+    st["ladder"] = {t: v for t, v in st["ladder"].items() if t in lad["tickers"]}
     for t in lad["tickers"]:
         p = px.get(t)
         if not p:
