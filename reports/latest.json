@@ -1,12 +1,13 @@
 {
-  "run_at_utc": "2026-11-26T05:22:19Z",
+  "run_at_utc": "2026-11-26T13:00:53Z",
   "run_date_sgt": "2026-11-26",
   "level": "yellow",
   "alerts": [
     {
       "level": "yellow",
       "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.03）"
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.03）",
+      "repeat": true
     }
   ],
   "etf": {
@@ -21,7 +22,7 @@
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.0638229752791174
+      "close_vs_ma_month": -0.06382297015625893
     },
     "VOO": {
       "as_of": "2026-11-25",
@@ -29,12 +30,12 @@
       "high": 716.2000122070312,
       "drawdown": -0.08004749527045729,
       "ret_1d": -0.0027849234827330704,
-      "ma200": 671.6223031616211,
+      "ma200": 671.6222998046875,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.011894826627543709
+      "close_vs_ma_month": -0.011894817582999706
     },
     "QQQ": {
       "as_of": "2026-11-25",
@@ -47,7 +48,7 @@
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.06405578861749439
+      "close_vs_ma_month": -0.06405578018339553
     },
     "SPY": {
       "as_of": "2026-11-25",
@@ -68,7 +69,7 @@
       "high": 218.1940155029297,
       "drawdown": -0.4134577748984357,
       "ret_1d": -0.004975834120276579,
-      "ma200": 161.08935604095458,
+      "ma200": 161.08935596466065,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -133,12 +134,12 @@
       "high": 36.93000030517578,
       "drawdown": -0.13782832684879565,
       "ret_1d": -0.007790588931481768,
-      "ma200": 33.517408618927,
+      "ma200": 33.51740866661072,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.04473383038390455
+      "close_vs_ma_month": -0.04473381945099342
     }
   },
   "macro": {
@@ -151,7 +152,8 @@
       "DGS10": "2026-11-24",
       "NFCI": "2026-11-20",
       "SAHMREALTIME": "2026-10-01",
-      "DTWEXBGS": "2026-11-20"
+      "DTWEXBGS": "2026-11-20",
+      "ICSA": "2026-11-21"
     },
     "vix": 26.36,
     "vix3m": 25.47,
@@ -167,6 +169,45 @@
     "sahm": 0.0,
     "usd_broad": 123.5978,
     "real_10y_chg_20d": 0.1299999999999999
+  },
+  "framework": {
+    "ticker": "QQQ",
+    "as_of": "2026-11-25",
+    "episode_start": "2026-10-06",
+    "episode_high": 759.6599731445312,
+    "episode_low": 608.4500122070312,
+    "episode_low_date": "2026-11-20",
+    "days_since_low": 3,
+    "rebound_from_low": 0.04187686738032337,
+    "vix_max_in_episode": 35.89,
+    "hy_peak_in_episode": 3.76,
+    "hy_off_peak_pp": 0.03999999999999959,
+    "sahm": 0.0,
+    "icsa_4w": 196000.0,
+    "icsa_4w_yoy": -0.125,
+    "dims": {
+      "price": 0,
+      "panic": 0,
+      "credit": 0,
+      "macro": 1,
+      "policy": null,
+      "theme": null
+    },
+    "data_score": 1,
+    "notes": [],
+    "early_trigger": {
+      "days_above_ma200": 0,
+      "required": 5,
+      "met": false
+    }
+  },
+  "technical": {
+    "as_of": "2026-11-25",
+    "rsi14": 38.58845954171922,
+    "vs_ma200": -0.07122462904977178,
+    "ma50_above_ma200": true,
+    "days_above_ma200": 0,
+    "dd_52w": -0.1655082338329663
   },
   "state": {
     "ladder": {
@@ -188,7 +229,9 @@
       }
     ]
   },
-  "data_issues": [],
+  "data_issues": [
+    "价格数据日期未更新（2026-11-25），可能是美股休市或数据源延迟；以下报警沿用上次结果"
+  ],
   "sources": {
     "VIXCLS": "FRED API",
     "VXVCLS": "FRED API",
@@ -199,6 +242,7 @@
     "NFCI": "FRED API",
     "SAHMREALTIME": "FRED API",
     "DTWEXBGS": "FRED API",
+    "ICSA": "FRED API",
     "QQQM": "yfinance",
     "VOO": "yfinance",
     "QQQ": "yfinance",
