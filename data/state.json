@@ -9,27 +9,12 @@
     "trend": false,
     "macro": false
   },
-  "last_data_date": "2026-11-24",
+  "last_data_date": "2026-11-25",
   "last_alerts": [
     {
       "level": "yellow",
       "code": "VIX_INVERT",
-      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.04）"
-    },
-    {
-      "level": "yellow",
-      "code": "BIGMOVE_SOXX",
-      "msg": "SOXX 单日 -8.3%"
-    },
-    {
-      "level": "yellow",
-      "code": "BIGMOVE_SMH",
-      "msg": "SMH 单日 -7.3%"
-    },
-    {
-      "level": "yellow",
-      "code": "BIGMOVE_DRAM",
-      "msg": "DRAM 单日 -9.2%"
+      "msg": "VIX 期限结构倒挂（VIX/VIX3M = 1.03）"
     }
   ]
 }
