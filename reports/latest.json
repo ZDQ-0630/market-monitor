@@ -1,6 +1,6 @@
 {
-  "run_at_utc": "2026-11-26T13:00:53Z",
-  "run_date_sgt": "2026-11-26",
+  "run_at_utc": "2026-11-27T05:17:12Z",
+  "run_date_sgt": "2026-11-27",
   "level": "yellow",
   "alerts": [
     {
@@ -22,7 +22,7 @@
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.06382297015625893
+      "close_vs_ma_month": -0.0638229752791174
     },
     "VOO": {
       "as_of": "2026-11-25",
@@ -30,12 +30,12 @@
       "high": 716.2000122070312,
       "drawdown": -0.08004749527045729,
       "ret_1d": -0.0027849234827330704,
-      "ma200": 671.6222998046875,
+      "ma200": 671.6223013305664,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.011894817582999706
+      "close_vs_ma_month": -0.011894826627543709
     },
     "QQQ": {
       "as_of": "2026-11-25",
@@ -43,7 +43,7 @@
       "high": 759.6599731445312,
       "drawdown": -0.1655082338329663,
       "ret_1d": -0.006534999325657598,
-      "ma200": 682.5439309692383,
+      "ma200": 682.5439315795899,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -56,12 +56,12 @@
       "high": 779.0900268554688,
       "drawdown": -0.08008062290343199,
       "ret_1d": -0.0028938159173377276,
-      "ma200": 730.7721255493165,
+      "ma200": 730.7721246337891,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.012217677123384951
+      "close_vs_ma_month": -0.01221768543269841
     },
     "SOXX": {
       "as_of": "2026-11-25",
@@ -69,12 +69,12 @@
       "high": 218.1940155029297,
       "drawdown": -0.4134577748984357,
       "ret_1d": -0.004975834120276579,
-      "ma200": 161.08935596466065,
+      "ma200": 161.08935661315917,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": true,
-      "close_vs_ma_month": -0.19183748583441196
+      "close_vs_ma_month": -0.19183750140859746
     },
     "SMH": {
       "as_of": "2026-11-25",
@@ -126,7 +126,7 @@
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
       "trend_below_ma_month_end": false,
-      "close_vs_ma_month": -0.053948805701268254
+      "close_vs_ma_month": -0.0539488143338932
     },
     "SCHG": {
       "as_of": "2026-11-25",
@@ -134,7 +134,7 @@
       "high": 36.93000030517578,
       "drawdown": -0.13782832684879565,
       "ret_1d": -0.007790588931481768,
-      "ma200": 33.51740866661072,
+      "ma200": 33.51740864753723,
       "below_ma200": true,
       "crossed_below_ma200": false,
       "last_month_end": "2026-10",
@@ -203,8 +203,8 @@
   },
   "technical": {
     "as_of": "2026-11-25",
-    "rsi14": 38.58845954171922,
-    "vs_ma200": -0.07122462904977178,
+    "rsi14": 38.588459541727914,
+    "vs_ma200": -0.07122462988031097,
     "ma50_above_ma200": true,
     "days_above_ma200": 0,
     "dd_52w": -0.1655082338329663
